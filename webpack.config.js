@@ -8,6 +8,18 @@ const webpackConfig = {
   output: {
     filename: 'main.js',
     path: join(__dirname, 'dist'),
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        options: {
+          presets: [ '@babel/preset-env' ]
+        }
+      }
+    ]
   }
 }
 
