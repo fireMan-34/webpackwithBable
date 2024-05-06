@@ -2,11 +2,12 @@ const babelConfig = {
   "presets": [
     ["@babel/preset-env",
       {
-        "useBuiltIns": "entry",
-        "corejs": "3.22",
+        "useBuiltIns": "usage",
+        "corejs": "3.8",
+        "shippedProposals": true,
       }
     ]
-  ]
+  ],
 };
 
 module.exports = babelConfig;
