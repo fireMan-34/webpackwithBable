@@ -4,7 +4,7 @@ const { join } = require('path');
 * @type {import('webpack').Configuration}
 */
 const webpackConfig = {
-  entry: [ './src/index.js' ],
+  entry: ['./src/index.js'],
   output: {
     filename: 'main.js',
     path: join(__dirname, 'dist'),
@@ -15,9 +15,7 @@ const webpackConfig = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        options: {
-          presets: [ '@babel/preset-env' ]
-        }
+        options: require('./babel.config'),
       }
     ]
   }
