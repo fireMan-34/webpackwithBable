@@ -1,16 +1,21 @@
 const { join } = require('path');
 
+const bundleDirectoryPath = join(__dirname, 'dist');
+const cacheDirectoryPath = join(__dirname, '.cache');
+
 /**
 * @type {import('webpack').Configuration}
 */
 const webpackConfig = {
-  entry: ['./src/index.js'],
+  entry: {
+    main: './src/index.js'
+  },
   output: {
-    filename: 'main.js',
-    path: join(__dirname, 'dist'),
+    filename: '[name].js',
+    path: bundleDirectoryPath,
   },
   cache: {
-    cacheDirectory: join(__dirname, 'dist'),
+    cacheDirectory: cacheDirectoryPath,
     type: 'filesystem',
   },
   mode: 'production',
@@ -20,7 +25,9 @@ const webpackConfig = {
           test: /\.js$/,
           use: {
             loader: 'babel-loader',
-            options: require('./babel.config'),
+            options: Object.assign({
+              cacheDirectory: cacheDirectoryPath,
+            },require('./babel.config')),
           },
           "exclude": [
             // \\ for Windows, \/ for Mac OS and Linux
@@ -30,6 +37,18 @@ const webpackConfig = {
           ],
         }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        polyfills: {
+          test: /[\\/]node_modules[\\/](@babel|core-js)/,
+          name: 'polyfills',
+          chunks: 'initial',
+          enforce: true,
+        }
+      }
+    }
   }
 }
 

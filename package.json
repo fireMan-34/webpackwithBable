@@ -17,5 +17,8 @@
   ],
   "dependencies": {
     "core-js": "3"
+  },
+  "scripts": {
+    "dev": "yarn webpack --watch"
   }
 }
