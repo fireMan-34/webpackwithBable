@@ -1,4 +1,5 @@
 import { Add, add } from "./utils";
+import IETestButton from "./components/IETestButton";
 
 let isFinish = false;
 
@@ -17,4 +18,12 @@ function component() {
 
 document.body.appendChild(component());
 
-console.log('mult entry points')
+console.log('mult entry points');
+
+IETestButton({ name: 'array.from', fn: () => {
+  alert(Array.from([2,3,4]))
+}});
+
+IETestButton({ name: 'history.replaceState', fn: () => {
+  history.replaceState({}, '', '/');
+}, autoClick: true})

@@ -8,7 +8,8 @@ const cacheDirectoryPath = join(__dirname, '.cache');
 */
 const webpackConfig = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
+    catch: './src/error/index.js',
   },
   output: {
     filename: '[name].js',
@@ -18,7 +19,6 @@ const webpackConfig = {
     cacheDirectory: cacheDirectoryPath,
     type: 'filesystem',
   },
-  mode: 'production',
   module: {
     rules: [
         {
