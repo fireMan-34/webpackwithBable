@@ -18,6 +18,7 @@ const webpackConfig = {
   cache: {
     cacheDirectory: cacheDirectoryPath,
     type: 'filesystem',
+    allowCollectingMemory: true, 
   },
   module: {
     rules: [
@@ -35,6 +36,15 @@ const webpackConfig = {
             // /node_modules[\\\/]core-js/,
             // /node_modules[\\\/]webpack[\\\/]buildin/,
           ],
+        },
+        {
+          test: /utils.js/,
+          loader: 'babel-loader',
+          options: Object.assign({
+            plugins: [
+              './babel/transformAdd.js'
+            ],
+          }, require('./babel.config')),
         }
     ]
   },
@@ -46,7 +56,13 @@ const webpackConfig = {
           name: 'polyfills',
           chunks: 'initial',
           enforce: true,
-        }
+        },
+        // utils: {
+        //   test: /utils.js/,
+        //   name: 'utils',
+        //   chunks: 'initial',
+        //   enforce: true,
+        // }
       }
     }
   }

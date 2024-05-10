@@ -26,4 +26,6 @@ IETestButton({ name: 'array.from', fn: () => {
 
 IETestButton({ name: 'history.replaceState', fn: () => {
   history.replaceState({}, '', '/');
-}, autoClick: true})
+}, autoClick: true});
+
+IETestButton({ name: 'symbol use', fn: () => { console.log(Symbol('3'), '3'.replace('3', '2')) },  autoClick: true })
